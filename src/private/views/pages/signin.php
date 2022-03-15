@@ -29,8 +29,9 @@ crossorigin="anonymous">
     <button class="w-100 btn btn-lg btn-primary mt-3" type="submit" name="signin">Sign in</button>
   </form>
   <?php if (isset($_SESSION['errors'])) {
-        $_SESSION['errors'] = [];?>
-      <a class="w-100 btn btn-lg btn-primary mt-3" href="user" type="submit" name="againsignup">Sign up</a>
+        unset($_SESSION['errors']);
+        ?>
+      <a class="w-100 btn btn-lg btn-primary mt-3" href="signup" type="submit" name="againsignup">Sign up</a>
   <?php }?>
     <p class="mt-5 mb-3 text-muted">&copy; CEDCOSS Technologies</p>
 </main>

@@ -17,9 +17,9 @@ crossorigin="anonymous">
 <main class="form-signin">
   <form action=<?php
   if ($data == 1) {
-      echo "user";
-  } else {
       echo "pages/user";
+  } else {
+      echo "user";
   }?> method="post">
     <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
     <div class="form-floating">
@@ -42,7 +42,9 @@ crossorigin="anonymous">
     <button class="w-100 btn btn-lg btn-primary" name="signup" type="submit">Sign Up</button>
     </form>
     <?php if (isset($_SESSION['errors'])) {
-        $_SESSION['errors'] = [];?>
+        unset($_SESSION['errors']);
+        $_SESSION['flag']=0;
+        ?>
       <a class="w-100 btn btn-lg btn-primary mt-3 mb-3" href="signin" >Sign In</a>
     <?php }?>
     <p class="mt-5 mb-3 text-muted">&copy; CEDCOSS Technologies</p> 

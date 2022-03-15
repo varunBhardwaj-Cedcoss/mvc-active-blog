@@ -24,7 +24,6 @@ crossorigin="anonymous">
 <a href="dashboard" class="nav-item nav-link">Dashboard</a>
 <a href="signout" class="nav-item nav-link mr-3">signout</a>
 <?php } ?>
-<a href="cart.php" class="btn btn-primary">Cart</a>
 </div>
 </div>
 </nav>

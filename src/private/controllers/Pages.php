@@ -8,7 +8,13 @@ class Pages extends Controller
 {
     public function signup()
     {
-        $this->view('/pages/signup', $arr = [], $arr = []);
+        if (isset($_SESSION['flag'])) {
+            $data=$_SESSION['flag'];
+        } else {
+            $data = 1;
+        }
+        
+        $this->view('/pages/signup', $data, $arr = []);
     }
     public function signin()
     {
@@ -41,7 +47,8 @@ class Pages extends Controller
             $this->view('/pages/signin', $arr = [], $arr = []);
         } else {
             $_SESSION['errors'] = $error;
-            $this->view('/pages/signup', $f = 1, $arr = []);
+            header("location:signup");
+            /* $this->view('/pages/signup', $data, $arr = []); */
         }
     }
     public function check()
