@@ -25,8 +25,10 @@ class Pages extends Controller
             array_push($error, 'enter password');
         } if (empty($_POST['password2'])) {
             array_push($error, 'enter password in second filed also');
-        } if ($_POST['password'] != $_POST['password2']) {
-            array_push($error, 'enter same password in both filed');
+        } if (isset($_POST['password']) && isset($_POST['password2'])) {
+            if ($_POST['password']!= $_POST['password2']) {
+                array_push($error, 'enter same password in both filed');
+            }
         }
         if (count($error) == 0) {
             $userNew = $this->model('Users');
@@ -36,12 +38,10 @@ class Pages extends Controller
             $userNew->role = 'Admin';
             $userNew->status = 'Approved';
             $userNew->save();
-            header('location:localhost:8080/pages/signin');
-            /* $this->view('/pages/signin', $arr = [], $arr = []); */
+            $this->view('/pages/signin', $arr = [], $arr = []);
         } else {
             $_SESSION['errors'] = $error;
-            header('location:signup');
-            //  $this->view('/pages/signup', $arr = [], $arr = []);
+            $this->view('/pages/signup', $f = 1, $arr = []);
         }
     }
     public function check()
@@ -67,8 +67,8 @@ class Pages extends Controller
                         $this->view('/pages/dashboard', $user, $blogs);
                     } else {
                         $blogs = $this->model('Blogs')::find('all', array('conditions' => array('email = ?',
-                        $_POST['email'])));
-                        $this->view('/pages/dashboard', $user, $blogs);
+                        $user->email)));
+                        $this->view('/pages/dashboard', $user=[], $blogs);
                     }
                 } else {
                     array_push($error, 'you have to wait profile needs to be approved');
@@ -96,7 +96,7 @@ class Pages extends Controller
             $this->view('/pages/dashboard', $user, $blogs);
         } else {
             $blogs = $this->model('Blogs')::find('all', array('conditions' => array('email = ?', $_SESSION['email'])));
-            $this->view('/pages/dashboard', $blogs, $user=[]);
+            $this->view('/pages/dashboard', $user=[], $blogs);
         }
     }
     public function blogs()
