@@ -62,7 +62,7 @@ Blogs
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 <h1 class="h2">Users</h1>
 <div class="col-12">
-<a class="btn btn-success" href="signup">Add User</a>
+<a class="btn btn-success" href="user">Add User</a>
 </div>
 </form>
 <div class="table-responsive">
